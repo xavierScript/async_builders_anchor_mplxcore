@@ -7,7 +7,7 @@ mod error;
 use instructions::*;
 // use state::*;
 
-declare_id!("6Xd46CQyBmJ2AvCzWae1UoTGcGqp3dLWno3wiSZQ7pcT");
+declare_id!("6zFE3MDaMDKtnDKqAuzfEzWLMegpCsoA6JQpET32kk7o");
 
 #[program]
 pub mod async_builders_anchor_mplxcore {
@@ -33,7 +33,7 @@ pub mod async_builders_anchor_mplxcore {
         ctx.accounts.thaw_nft()
     }
 
-    // pub fn update_nft(ctx: Context<UpdateNft>, new_name: String) -> Result<()> {
-    //     ctx.accounts.update_nft(new_name)
-    // }
+    pub fn update_nft(ctx: Context<UpdateNft>, new_name: String) -> Result<()> {
+        ctx.accounts.update_nft(new_name)
+    }
 }

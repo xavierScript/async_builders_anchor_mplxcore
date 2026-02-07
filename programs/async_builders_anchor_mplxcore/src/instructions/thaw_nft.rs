@@ -10,10 +10,11 @@ use crate::{error::MPLXCoreError, state::CollectionAuthority};
 #[derive(Accounts)]
 pub struct ThawNft<'info> {
      #[account(mut)]
-    pub minter: Signer<'info>,
+    pub authority: Signer<'info>,
 
-    #[account(mut)]
-    pub asset: Signer<'info>,
+   #[account(mut)]
+    /// CHECK: This will also be checked by core
+    pub asset: UncheckedAccount<'info>,
 
     #[account(
         mut,
@@ -25,6 +26,7 @@ pub struct ThawNft<'info> {
     #[account(
         seeds = [b"collection_authority", collection.key().as_ref()],
         bump = collection_authority.bump,
+        constraint = collection_authority.creator == authority.key() @ MPLXCoreError::NotAuthorized
     )]
     pub collection_authority: Account<'info, CollectionAuthority>,
 
@@ -47,7 +49,7 @@ impl<'info> ThawNft<'info> {
             .asset(&self.asset.to_account_info())
             .collection(Some(&self.collection.to_account_info()))
             .authority(Some(&self.collection_authority.to_account_info()))
-            .payer(&self.minter.to_account_info())
+            .payer(&self.authority.to_account_info())
             .system_program(&self.system_program.to_account_info())
             .plugin(Plugin::FreezeDelegate( FreezeDelegate { frozen:false } ))
             .invoke_signed(signer_seeds)?;    

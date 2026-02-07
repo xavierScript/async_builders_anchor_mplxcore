@@ -6,7 +6,7 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-async_builders_anchor_mplxcore = "6Xd46CQyBmJ2AvCzWae1UoTGcGqp3dLWno3wiSZQ7pcT"
+async_builders_anchor_mplxcore = "6zFE3MDaMDKtnDKqAuzfEzWLMegpCsoA6JQpET32kk7o"
 
 [registry]
 url = "https://api.apr.dev"
