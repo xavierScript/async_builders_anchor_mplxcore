@@ -29,9 +29,9 @@ pub mod async_builders_anchor_mplxcore {
         ctx.accounts.freeze_nft()
     }
 
-    // pub fn thaw_nft(ctx: Context<ThawNft>) -> Result<()> {
-    //     ctx.accounts.thaw_nft()
-    // }
+    pub fn thaw_nft(ctx: Context<ThawNft>) -> Result<()> {
+        ctx.accounts.thaw_nft()
+    }
 
     // pub fn update_nft(ctx: Context<UpdateNft>, new_name: String) -> Result<()> {
     //     ctx.accounts.update_nft(new_name)
